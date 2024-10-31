@@ -81,8 +81,13 @@ def add_user():
         try:
             cursor = conn.cursor()
             name = input("Enter the user's name:\n")
-            user_id = input("Create a unique User ID:\n")
-        
+
+            query = "INSERT INTO users(name) VALUES (%s)"
+
+            cursor.execute(query,(name,))
+            conn.commit()
+            print (f"{name} has been added to the user database!")
+
         except Error as e:
             print(f"Error: {e}")
 
@@ -95,7 +100,7 @@ def view_user_detail():
     if conn is not None:
         try:
             cursor = conn.cursor()
-            user_id = input("Enter User ID for user you would like details for:\n")
+            user_name = input("Enter name of user you would like details for:\n")
         
         except Error as e:
             print(f"Error: {e}")
@@ -109,7 +114,15 @@ def display_users():
     if conn is not None:    
         try:
             cursor = conn.cursor()
-        
+
+            query = "SELECT * FROM users"
+            
+            cursor.execute(query)
+
+            for row in cursor.fetchall():
+                user_id,name = row
+                print(f"User ID: {user_id}, Name: {name.title()}")
+
         except Error as e:
             print(f"Error: {e}")
 
@@ -122,7 +135,7 @@ def add_author():
     if conn is not None:    
         try:
             cursor = conn.cursor()
-            name = input("Enter the author's name:\n")
+            name = input("Enter the author's name:\n").lower()
             biography = input("Enter a brief bio about the author:\n")
 
             new_author = (name,biography)
@@ -131,7 +144,7 @@ def add_author():
 
             cursor.execute(query,new_author)
             conn.commit()
-            print (f"{name} has been added to the database!")
+            print (f"{name} has been added to the author database!")
 
         except Error as e:
             print(f"Error: {e}")
@@ -145,7 +158,16 @@ def view_author_detail():
     if conn is not None:    
         try:
             cursor = conn.cursor()
-            author = input("Enter name for author you would like details for:\n")
+            author = input("Enter name for author you would like details for:\n").lower()
+
+            query = "SELECT * FROM authors"
+
+            cursor.execute(query)
+
+            for row in cursor.fetchall():
+                author_id,name,biography = row
+                if author in name:
+                    print(f"Author ID: {author_id}, Name: {name.title()}, Biography: {biography}")
         
         except Error as e:
             print(f"Error: {e}")
@@ -166,7 +188,7 @@ def display_authors():
 
             for row in cursor.fetchall():
                 author_id,name,biography = row
-                print(f"Author ID: {author_id}, Name: {name}, Biography: {biography}")
+                print(f"Author ID: {author_id}, Name: {name.title()}, Biography: {biography}")
 
         except Error as e:
             print(f"Error: {e}")
