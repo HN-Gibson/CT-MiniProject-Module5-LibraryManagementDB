@@ -6,11 +6,19 @@ def add_book():
     if conn is not None:    
         try:
             cursor = conn.cursor()    
-            title = input("Enter the title:\n")
-            author = input("Enter the author:\n")
+            title = input("Enter the title:\n").lower()
+            author = input("Enter the author's name:\n").lower()
             genre = input("Enter the genre:\n")
             pub_date = input("Enter the date of publication:\n")
+
+            new_book = (title,author,genre,pub_date)
         
+            query = "INSERT INTO books(title,author_name,genre,publication_date) VALUES (%s,%s,%s,%s)"
+
+            cursor.execute(query,new_book)
+            conn.commit()
+            print (f"{title.title()} has been added to the user database!")
+
         except Error as e:
             print(f"Error: {e}")
 
@@ -24,7 +32,7 @@ def check_out_book():
         try: 
             cursor = conn.cursor()   
             title = input("Enter title of book you would like to borrow:\n")
-            user_id = input("Enter User ID for person borrowing the book:\n")
+            user_id = input("Enter name for person borrowing the book:\n")
         
         except Error as e:
             print(f"Error: {e}")
@@ -39,7 +47,7 @@ def check_in_book():
         try:
             cursor = conn.cursor()    
             title = input("Enter title of book you would like to return:\n")
-            user_id = input("Enter User ID for person returning the book:\n")
+            user_id = input("Enter name for person returning the book:\n")
         
         except Error as e:
             print(f"Error: {e}")
@@ -53,8 +61,17 @@ def search_book():
     if conn is not None:
         try:
             cursor = conn.cursor()
-            title = input("Enter title you would like to search:\n")
-        
+            book_title = input("Enter title you would like to search:\n")
+
+            query = "SELECT * FROM books"
+
+            cursor.execute(query)
+
+            for row in cursor.fetchall():
+                book_id,title,author,genre,pub_date,availability = row
+                if book_title in title:
+                    print(f"Book ID: {book_id}, Title: {title.title()}, Author: {author.title()}, Genre: {genre}, Publication Year: {pub_date}, Available: {availability}")
+
         except Error as e:
             print(f"Error: {e}")
 
@@ -67,7 +84,15 @@ def display_books():
     if conn is not None:    
         try:
             cursor = conn.cursor()
-        
+
+            query = "SELECT * FROM books"
+
+            cursor.execute(query)
+
+            for row in cursor.fetchall():
+                book_id,title,author,genre,pub_date,availability = row
+                print(f"Book ID: {book_id}, Title: {title.title()}, Author: {author.title()}, Genre: {genre}, Publication Year: {pub_date}, Available: {availability}")
+
         except Error as e:
             print(f"Error: {e}")
 
@@ -80,13 +105,13 @@ def add_user():
     if conn is not None:
         try:
             cursor = conn.cursor()
-            name = input("Enter the user's name:\n")
+            name = input("Enter the user's name:\n").lower()
 
             query = "INSERT INTO users(name) VALUES (%s)"
 
             cursor.execute(query,(name,))
             conn.commit()
-            print (f"{name} has been added to the user database!")
+            print (f"{name.title()} has been added to the user database!")
 
         except Error as e:
             print(f"Error: {e}")
@@ -100,8 +125,17 @@ def view_user_detail():
     if conn is not None:
         try:
             cursor = conn.cursor()
-            user_name = input("Enter name of user you would like details for:\n")
-        
+            user_name = input("Enter name of user you would like details for:\n").lower()
+
+            query = "SELECT * FROM users"
+
+            cursor.execute(query)
+
+            for row in cursor.fetchall():
+                user_id,name = row
+                if user_name in name:
+                    print(f"User ID: {user_id}, Name: {name.title()}")
+
         except Error as e:
             print(f"Error: {e}")
 
@@ -144,7 +178,7 @@ def add_author():
 
             cursor.execute(query,new_author)
             conn.commit()
-            print (f"{name} has been added to the author database!")
+            print (f"{name.title()} has been added to the author database!")
 
         except Error as e:
             print(f"Error: {e}")
