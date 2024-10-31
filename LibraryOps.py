@@ -123,7 +123,7 @@ def add_author():
         try:
             cursor = conn.cursor()
             name = input("Enter the author's name:\n")
-            biography = input("Enter a brief bio about the autho:\n")
+            biography = input("Enter a brief bio about the author:\n")
 
             new_author = (name,biography)
 
