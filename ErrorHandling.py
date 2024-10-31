@@ -19,3 +19,7 @@ class AuthorNotFound(Exception):
     pass
     def handle_author_not_found():
         print("No author found with that name.")
+class MissingRequiredData(Exception):
+    pass
+    def handle_missing_required_data():
+        print ("Error: Missing required data.")

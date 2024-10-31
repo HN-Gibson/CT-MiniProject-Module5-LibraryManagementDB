@@ -1,11 +1,11 @@
 from ErrorHandling import UserInputEmpty
 from ErrorHandling import InvalidEntry
-from LibraryOps import Library
+import LibraryOps   
 
 
 class UserInterface:
     def __init__(self):
-        self.library = Library()
+        pass
     def main(self):
         while True:
             try:
@@ -53,15 +53,15 @@ class UserInterface:
                 if user_request == "":
                     raise UserInputEmpty
                 elif user_request == "1":
-                    self.library.add_book()     
+                    LibraryOps.add_book()     
                 elif user_request == "2":
-                    self.library.check_out_book()
+                    LibraryOps.check_out_book()
                 elif user_request == "3":
-                    self.library.check_in_book()
+                    LibraryOps.check_in_book()
                 elif user_request == "4":
-                    self.library.search_book()
+                    LibraryOps.search_book()
                 elif user_request == "5":
-                    self.library.display_books()
+                    LibraryOps.display_books()
                 elif user_request == "6":
                     break
                 else:
@@ -85,11 +85,11 @@ class UserInterface:
                 if user_request == "":
                     raise UserInputEmpty
                 elif user_request == "1":
-                    self.library.add_user()
+                    LibraryOps.add_user()
                 elif user_request == "2":
-                    self.library.view_user_detail()
+                    LibraryOps.view_user_detail()
                 elif user_request == "3":
-                    self.library.display_users()
+                    LibraryOps.display_users()
                 elif user_request == "4":
                     break
                 else:
@@ -113,11 +113,11 @@ class UserInterface:
                 if user_request == "":
                     raise UserInputEmpty
                 elif user_request == "1":
-                    self.library.add_author()
+                    LibraryOps.add_author()
                 elif user_request == "2":
-                    self.library.view_author_detail()
+                    LibraryOps.view_author_detail()
                 elif user_request == "3":
-                    self.library.display_authors()
+                    LibraryOps.display_authors()
                 elif user_request == "4":
                     break
                 else:
