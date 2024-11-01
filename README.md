@@ -25,24 +25,36 @@ To offer a seemless means of managing a library database containing book info, a
 
 1. Book Operations
 
-    - Within this menu, you are able to access the Library to: 
+    - Within this menu, you are able to access the Library to:
+
         1. Add books, including information about the author, genre, and date it was published.
+
             - Note: All newly added books will enter the collection with a designation of available. To change this, use the Borrow a book option to update the status as well as who has the book.
+
         2. Borrow a book, making note of the user that has it checked out and tieing that information to their User ID.
+
             - This feature uses the User and Book IDs, so please make note of these items before trying to utilize this feature.
+
         3. Return a book, noting the book was returned in the logs associated with the user.
+
             - This feature uses the User and Book IDs, so please make note of these items before trying to utilize this feature.
+
         4. Search for a specific book to see it's information, including if it is available.
+
             - This feature allows you to search for a book even if you do not know the full title. Simply enter part of what the title is to see if a result is found.
+
         5. Display the title of all books in the Library.
+
             - Note: This option can be used prior to searching to see what is in the library.
+
         6. Return to Main Menu
+        
     - After completeing an operation, you will have the opporunity to continue accessing other operations in this menu before returning to the main menu.
 
 2. User Operations
 
     -Within this menu, you are able to access the User Database to:
-    
+
         1. Add user names, which will in turm be linked to a user ID automatically. This User ID is used frequently.
 
         2. View user details, such as name, User ID, and what books they have currently by searching with the associated User ID.
