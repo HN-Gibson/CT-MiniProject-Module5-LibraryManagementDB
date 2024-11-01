@@ -42,6 +42,7 @@ To offer a seemless means of managing a library database containing book info, a
 2. User Operations
 
     -Within this menu, you are able to access the User Database to:
+    
         1. Add user names, which will in turm be linked to a user ID automatically. This User ID is used frequently.
 
         2. View user details, such as name, User ID, and what books they have currently by searching with the associated User ID.
@@ -71,7 +72,7 @@ To offer a seemless means of managing a library database containing book info, a
             -Note: This option can be used prior to searching to see what is in the database.
 
         4. Return to Main Menu
-        
+
             - After completeing an operation, you will have the opporunity to continue accessing other operations in this menu before returning to the main menu.
 
 **Technical Notes**
